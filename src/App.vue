@@ -1,9 +1,12 @@
 <template>
 
-  <div v-for="todo in todos" class="card">
-    <p>{{todo}}</p>
+  <div class="list__conainer">
+    <div v-for="todo in ToDos" class="card">
+      <p>{{todo.name}}</p>
+    </div>
   </div>
-  <input type="text" v-model="newItem" @keyup.enter.prevent="addItem"/>
+
+  <input class="list__input" type="text" v-model="newItem" @keyup.enter.prevent="addItem"/>
 </template>
 
 <script>
@@ -17,7 +20,7 @@ export default {
   },
   data() {
     return {
-      todos: ["Putzen", "joggen", "Baden"],
+      ToDos: [],
       newItem: ""
     }
   },
@@ -35,19 +38,44 @@ export default {
     }
   },
   firestore: {
-    ToDos: db.collection("ToDos")
+    Todos: db.collection("ToDos")
   }
 }
 </script>
 
 <style>
 
+p {
+  margin:0.4rem;
+}
+
 
 
 .card {
-  width: 400px;
-  height: 100px;
+  width: 90vw;
+  height: 20vw;
   background-color: white;
+  margin-bottom: 10px;
+  display: flex;
+  border-top: 2px dotted #F2BDC7;
+  border-bottom: 2px dotted #F2BDC7;
+}
+
+.list__conainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.list__input {
+  position: fixed;
+  bottom: 20px;
+  width: 100vw;
+  left: 0;
 }
 
 </style>
